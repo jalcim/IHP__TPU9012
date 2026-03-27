@@ -1,0 +1,138 @@
+library (TPU9012) {
+  comment                        : "";
+  delay_model                    : table_lookup;
+  simulation                     : false;
+  capacitive_load_unit (1,pF);
+  leakage_power_unit             : 1pW;
+  current_unit                   : "1uA";
+  pulling_resistance_unit        : "1kohm";
+  time_unit                      : "1ns";
+  voltage_unit                   : "1v";
+  library_features(report_delay_calculation);
+
+  input_threshold_pct_rise : 50;
+  input_threshold_pct_fall : 50;
+  output_threshold_pct_rise : 50;
+  output_threshold_pct_fall : 50;
+  slew_lower_threshold_pct_rise : 20;
+  slew_lower_threshold_pct_fall : 20;
+  slew_upper_threshold_pct_rise : 80;
+  slew_upper_threshold_pct_fall : 80;
+  slew_derate_from_library : 1.0;
+
+
+  nom_process                    : 1.0;
+  nom_temperature                : 125.0;
+  nom_voltage                    : 1.08;
+
+  type ("data_in_PAD") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 8;
+    bit_from : 7;
+    bit_to : 0;
+  }
+  type ("result_PAD") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 8;
+    bit_from : 7;
+    bit_to : 0;
+  }
+
+  cell ("TPU9012") {
+    area : 621408.125 
+    is_macro_cell : true;
+    pin("alive_PAD") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("clk_PAD") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("kernel_we_PAD") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("rst_n_PAD") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    bus("data_in_PAD") {
+      bus_type : data_in_PAD;
+      direction : inout;
+      capacitance : 0.0000;
+    pin("data_in_PAD[7]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("data_in_PAD[6]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("data_in_PAD[5]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("data_in_PAD[4]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("data_in_PAD[3]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("data_in_PAD[2]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("data_in_PAD[1]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    pin("data_in_PAD[0]") {
+      direction : inout;
+      capacitance : 0.2440;
+    }
+    }
+    bus("result_PAD") {
+      bus_type : result_PAD;
+      direction : inout;
+      capacitance : 0.0000;
+    pin("result_PAD[7]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("result_PAD[6]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("result_PAD[5]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("result_PAD[4]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("result_PAD[3]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("result_PAD[2]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("result_PAD[1]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    pin("result_PAD[0]") {
+      direction : inout;
+      capacitance : 0.0000;
+    }
+    }
+  }
+
+}

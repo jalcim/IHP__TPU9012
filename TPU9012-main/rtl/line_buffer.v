@@ -1,8 +1,8 @@
 `ifndef __LINE_BUFFER__
 `define __LINE_BUFFER__
 
-`include "src/shift_buffer.v"
-`include "src/rotate_buffer.v"
+`include "shift_buffer.v"
+`include "rotate_buffer.v"
 
 // Buffer de lignes avec rotation/transfert
 // L0 : écriture (shift)

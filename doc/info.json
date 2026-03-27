@@ -22,8 +22,8 @@
   "top_cell_name": "TPU9012",
   "release": {
     "version": "v.1.0.0",
-    "gds": "release/v.1.0.0/gds/chip_top.gds",
-    "netlist": "release/v.1.0.0/netlist/chip_top.spice",
+    "gds": "release/v.1.0.0/gds/TPU9012.gds",
+    "netlist": "release/v.1.0.0/netlist/TPU9012.spice",
     "doc": "release/v.1.0.0/doc"
   }
 }

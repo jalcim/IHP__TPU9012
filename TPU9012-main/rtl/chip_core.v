@@ -1,6 +1,6 @@
 `default_nettype none
 
-`include "src/shift_window.v"
+`include "shift_window.v"
 
 module chip_core #(parameter WAY = 28,
                    parameter WIRE = 8,

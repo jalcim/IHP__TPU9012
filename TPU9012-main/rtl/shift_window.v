@@ -1,9 +1,9 @@
 `ifndef __SHIFT_WINDOW__
 `define __SHIFT_WINDOW__
 
-`include "src/cpt.v"
-`include "src/line_buffer.v"
-`include "src/window_mask.v"
+`include "cpt.v"
+`include "line_buffer.v"
+`include "window_mask.v"
 
 // Fenêtre glissante 3x3 sur flux série
 // WAY+1 cycles par ligne : WAY data + 1 transfert

@@ -1,7 +1,7 @@
 `ifndef __WINDOW_MASK__
  `define __WINDOW_MASK__
 
- `include "src/adder_tree.v"
+ `include "adder_tree.v"
 
 // Extraction et masquage de la fenêtre 3x3
 // Masque horizontal selon cpt pour padding gauche/droite

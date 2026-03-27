@@ -1,8 +1,8 @@
 # Release v.1.0.0
 
 ## Contenu
-- GDS final avec seal ring et fillers (chip_top.gds)
-- Netlist gate-level post-synthese (chip_top.nl.v)
+- GDS final avec seal ring et fillers (TPU9012.gds)
+- Netlist gate-level post-synthese (TPU9012.nl.v)
 
 ## Verifications
 - DRC : clean (KLayout 0 erreurs, Magic 0 erreurs, 77 etapes LibreLane)

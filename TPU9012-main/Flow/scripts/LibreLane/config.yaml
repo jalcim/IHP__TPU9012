@@ -28,9 +28,9 @@ meta:
 #    Netgen.LVS: null
 #    Checker.LVS: null
 
-DESIGN_NAME: chip_top
+DESIGN_NAME: TPU9012
 VERILOG_FILES:
-- dir::../src/chip_top.v
+- dir::../src/TPU9012.v
 
 VDD_NETS: [VDD]
 GND_NETS: [VSS]
