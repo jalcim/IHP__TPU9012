@@ -1,0 +1,29 @@
+{
+  "name": "TPU9012",
+  "design_type": "D",
+  "technology": "IHP",
+  "unique_id": "9012",
+  "license": "CERN-OHL-S-2.0",
+  "trl": 5,
+  "sealring_x": 1200,
+  "sealring_y": 1200,
+  "repository": "",
+  "pdk_version": "",
+  "process": "SG13G2",
+  "dependencies": {
+    "bondpad_70x70_novias": { "dependencies": {} },
+    "logo_nebula": { "dependencies": {} }
+  },
+  "tools": {
+    "synthesis": "Yosys",
+    "pnr": "OpenROAD",
+    "flow": "LibreLane"
+  },
+  "top_cell_name": "chip_top",
+  "release": {
+    "version": "v.1.0.0",
+    "gds": "release/v.1.0.0/gds/chip_top.gds",
+    "netlist": "release/v.1.0.0/netlist/chip_top.nl.v",
+    "doc": "release/v.1.0.0/doc"
+  }
+}

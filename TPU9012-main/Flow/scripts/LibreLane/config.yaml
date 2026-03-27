@@ -1,0 +1,157 @@
+meta:
+  version: 3
+  flow: Chip
+  substituting_steps:
+
+# Magic illegal overlaps sur les IO pads IHP = faux positifs (cf. greyhound-ihp)
+    Checker.IllegalOverlap: null
+
+    # Disable KLayout DRC
+#    KLayout.DRC: null
+#    Checker.KLayoutDRC: null
+
+    # Disable magic DRC
+#    Magic.DRC: null
+    Checker.MagicDRC: null
+
+    # Disable KLayout antenna check
+#    KLayout.Antenna: null
+#    Checker.KLayoutAntenna: null
+
+    # Disable KLayout density check
+#    KLayout.Density: null
+#    Checker.KLayoutDensity: null
+    
+    # Save time
+#    OpenROAD.IRDropReport: null
+#    KLayout.XOR: null
+#    Netgen.LVS: null
+#    Checker.LVS: null
+
+DESIGN_NAME: chip_top
+VERILOG_FILES:
+- dir::../src/chip_top.v
+
+VDD_NETS: [VDD]
+GND_NETS: [VSS]
+
+# Bondpad (generer avec bondpad.py, pas dans le PDK)
+PAD_BONDPAD_NAME: bondpad_70x70_novias
+EXTRA_GDS: [dir::../ip/bondpad_70x70_novias/gds/bondpad_70x70_novias.gds]
+EXTRA_LEFS: [dir::../ip/bondpad_70x70_novias/lef/bondpad_70x70_novias.lef]
+IGNORE_DISCONNECTED_MODULES: [bondpad_70x70_novias, logo_nebula]
+
+# Utiliser le DRC runset minimal IHP (comme greyhound)
+#KLAYOUT_DRC_RUNSET: pdk_dir::/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc
+
+# GDS via KLayout, eviter les conflits de cellules
+PRIMARY_GDSII_STREAMOUT_TOOL: klayout
+KLAYOUT_CONFLICT_RESOLUTION: SkipNewCell
+
+# Magic extraction (IO cells = blackbox, LEF/DEF au lieu de GDS)
+MAGIC_EXT_USE_GDS: false
+MAGIC_EXT_ABSTRACT_CELLS:
+- bondpad_70x70_novias
+- sg13g2_IOPadIn
+- sg13g2_IOPadOut30mA
+- sg13g2_IOPadVdd
+- sg13g2_IOPadVss
+- sg13g2_IOPadIOVdd
+- sg13g2_IOPadIOVss
+MAGIC_EXT_UNIQUE: notopports
+
+MACROS:
+  logo_nebula:
+    gds:
+      - dir::../ip/logo_nebula/gds/logo_nebula.gds
+    lef:
+      - dir::../ip/logo_nebula/lef/logo_nebula.lef
+    vh:
+      - dir::../ip/logo_nebula/vh/logo_nebula.v
+    instances:
+      logo_nebula:
+        location: [188, 55]
+        orientation: N
+
+# Padring
+# IOPadIOVdd doit etre adjacent a un Out ou filler, pas a In/Vdd/Vss/IOVss
+# (bug PDK Cnt.b: contacts IOPadIOVdd a 0.085um du bord, espacement 0.175um < 0.18um)
+PAD_SOUTH:
+- vdd_pad_s
+- vss_pad_s
+- clk_pad
+- rst_n_pad
+- "data_in_pads\\[0\\].data_in_pad"
+- "data_in_pads\\[1\\].data_in_pad"
+- "data_in_pads\\[2\\].data_in_pad"
+PAD_EAST:
+- iovdd_pad_e
+- "result_pads\\[7\\].result_pad"
+- "result_pads\\[6\\].result_pad"
+- "result_pads\\[5\\].result_pad"
+- "result_pads\\[4\\].result_pad"
+- "data_in_pads\\[7\\].data_in_pad"
+- iovss_pad_e
+PAD_NORTH:
+- vdd_pad_n
+- vss_pad_n
+- kernel_we_pad
+- "data_in_pads\\[3\\].data_in_pad"
+- "data_in_pads\\[4\\].data_in_pad"
+- "data_in_pads\\[5\\].data_in_pad"
+- "data_in_pads\\[6\\].data_in_pad"
+PAD_WEST:
+- iovdd_pad_w
+- "result_pads\\[3\\].result_pad"
+- "result_pads\\[2\\].result_pad"
+- "result_pads\\[1\\].result_pad"
+- "result_pads\\[0\\].result_pad"
+- alive_pad
+- iovss_pad_w
+
+# Horloge
+CLOCK_PORT: clk_PAD
+CLOCK_NET: clk_pad/p2c
+CLOCK_PERIOD: 8
+
+# RC layers explicites pour STA
+SIGNAL_WIRE_RC_LAYERS: [Metal2, Metal3, Metal4, Metal5]
+CLOCK_WIRE_RC_LAYERS: [Metal2, Metal3, Metal4, Metal5]
+
+# SDC
+PNR_SDC_FILE: dir::constraint.sdc
+SIGNOFF_SDC_FILE: dir::constraint.sdc
+
+# Floorplan
+FP_SIZING: absolute
+DIE_AREA: [0, 0, 1200, 1200]
+CORE_AREA: [365, 365, 835, 835]
+PL_TARGET_DENSITY_PCT: 60
+PL_ROUTABILITY_DRIVEN: True
+# Seuil data only — le clock trunk (1559µm) est géré par CTS, ERROR désactivé
+WIRE_LENGTH_THRESHOLD: 1000
+ERROR_ON_LONG_WIRE: false
+PL_RESIZER_HOLD_SLACK_MARGIN: 0.15
+
+# PDN
+PDN_CFG: dir::pdn_cfg.tcl
+PDN_CORE_RING_VWIDTH: 15
+PDN_CORE_RING_HWIDTH: 15
+PDN_CORE_RING_VSPACING: 5
+PDN_CORE_RING_HSPACING: 5
+PDN_CORE_RING_CONNECT_TO_PADS: True
+PDN_CORE_RING: True
+PDN_ENABLE_PINS: False
+
+# Congestion
+GRT_ALLOW_CONGESTION: true
+
+# Synthese orientee timing
+SYNTH_STRATEGY: DELAY 3
+MAX_FANOUT_CONSTRAINT: 8
+
+# Garder la hierarchie pour controler le fanout de w_rotate/w_transfer
+SYNTH_HIERARCHY_MODE: keep
+
+# Diode cell pour antenne
+DIODE_CELL: sg13g2_antennanp/A

@@ -1,0 +1,22 @@
+{
+  "name": "logo_nebula",
+  "design_type": "D",
+  "technology": "IHP",
+  "unique_id": "9012",
+  "license": "CERN-OHL-S-2.0",
+  "trl": 5,
+  "sealring_x": 0,
+  "sealring_y": 0,
+  "repository": "",
+  "pdk_version": "",
+  "process": "SG13G2",
+  "dependencies": {},
+  "tools": {},
+  "top_cell_name": "logo_nebula",
+  "release": {
+    "version": "v.1.0.0",
+    "gds": "release/v.1.0.0/gds/logo_nebula.gds",
+    "netlist": "",
+    "doc": "release/v.1.0.0/doc"
+  }
+}
