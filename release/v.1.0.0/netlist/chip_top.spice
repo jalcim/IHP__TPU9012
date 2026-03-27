@@ -1,4 +1,4 @@
-* NGSPICE file created from chip_top.ext - technology: ihp-sg13g2
+* NGSPICE file created from TPU9012.ext - technology: ihp-sg13g2
 
 * Black-box entry subcircuit for sg13g2_fill_2 abstract view
 .subckt sg13g2_fill_2 VDD VSS
@@ -188,7 +188,7 @@
 .subckt logo_nebula
 .ends
 
-.subckt chip_top IOVDD IOVSS VDD VSS alive_PAD clk_PAD data_in_PAD[0] data_in_PAD[1]
+.subckt TPU9012 IOVDD IOVSS VDD VSS alive_PAD clk_PAD data_in_PAD[0] data_in_PAD[1]
 + data_in_PAD[2] data_in_PAD[3] data_in_PAD[4] data_in_PAD[5] data_in_PAD[6] data_in_PAD[7]
 + kernel_we_PAD result_PAD[0] result_PAD[1] result_PAD[2] result_PAD[3] result_PAD[4]
 + result_PAD[5] result_PAD[6] result_PAD[7] rst_n_PAD
