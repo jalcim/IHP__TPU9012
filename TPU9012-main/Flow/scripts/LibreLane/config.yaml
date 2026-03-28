@@ -30,15 +30,15 @@ meta:
 
 DESIGN_NAME: TPU9012
 VERILOG_FILES:
-- dir::../src/TPU9012.v
+- dir::../../../rtl/TPU9012.v
 
 VDD_NETS: [VDD]
 GND_NETS: [VSS]
 
 # Bondpad (generer avec bondpad.py, pas dans le PDK)
 PAD_BONDPAD_NAME: bondpad_70x70_novias
-EXTRA_GDS: [dir::../ip/bondpad_70x70_novias/gds/bondpad_70x70_novias.gds]
-EXTRA_LEFS: [dir::../ip/bondpad_70x70_novias/lef/bondpad_70x70_novias.lef]
+EXTRA_GDS: [dir::../../../../dependencies/bondpad_70x70_novias/release/v.1.0.0/gds/bondpad_70x70_novias.gds]
+EXTRA_LEFS: [dir::../../../../dependencies/bondpad_70x70_novias/bondpad_70x70_novias-main/PlaceAndRoute/lef/bondpad_70x70_novias.lef]
 IGNORE_DISCONNECTED_MODULES: [bondpad_70x70_novias, logo_nebula]
 
 # Utiliser le DRC runset minimal IHP (comme greyhound)
@@ -63,11 +63,11 @@ MAGIC_EXT_UNIQUE: notopports
 MACROS:
   logo_nebula:
     gds:
-      - dir::../ip/logo_nebula/gds/logo_nebula.gds
+      - dir::../../../../dependencies/logo_nebula/release/v.1.0.0/gds/logo_nebula.gds
     lef:
-      - dir::../ip/logo_nebula/lef/logo_nebula.lef
+      - dir::../../../../dependencies/logo_nebula/logo_nebula-main/PlaceAndRoute/lef/logo_nebula.lef
     vh:
-      - dir::../ip/logo_nebula/vh/logo_nebula.v
+      - dir::../../../../dependencies/logo_nebula/logo_nebula-main/rtl/logo_nebula.v
     instances:
       logo_nebula:
         location: [188, 55]
@@ -119,8 +119,8 @@ SIGNAL_WIRE_RC_LAYERS: [Metal2, Metal3, Metal4, Metal5]
 CLOCK_WIRE_RC_LAYERS: [Metal2, Metal3, Metal4, Metal5]
 
 # SDC
-PNR_SDC_FILE: dir::constraint.sdc
-SIGNOFF_SDC_FILE: dir::constraint.sdc
+PNR_SDC_FILE: dir::../../../constraints/sdc/constraint.sdc
+SIGNOFF_SDC_FILE: dir::../../../constraints/sdc/constraint.sdc
 
 # Floorplan
 FP_SIZING: absolute
