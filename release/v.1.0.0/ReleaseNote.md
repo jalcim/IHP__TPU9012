@@ -8,8 +8,8 @@
 - DRC : clean (KLayout 0 erreurs, Magic 0 erreurs, 77 etapes LibreLane)
 - Timing typ (25C) : setup ws = +2.49 ns
 - Timing fast (-40C) : setup ws = +3.37 ns
-- Timing slow (125C) : setup ws = -0.138 ns (violation 1.7% de la periode de 8 ns)
-- Hold : clean sur les 3 corners (min = +0.128 ns)
+- Timing slow (125C) : setup ws = -0.095 ns (violation 1.2% de la periode de 8 ns)
+- Hold : clean sur les 3 corners (min = +0.132 ns)
 - Seal ring : present (etape 63)
 - Fillers : inseres (etape 64)
 
